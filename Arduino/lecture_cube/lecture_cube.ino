@@ -16,60 +16,28 @@ float r5 = 0;
 float r6 = 0;
 float r7 = 0;
 
-long rref0 = 56000 ;
-long rref1 = 47000 ;
-long rref2 = 15000 ;
-long rref3 = 6800 ;
+float rref0 = 22000 ;
+float rref1 = 22000 ;
+float rref2 = 33000 ;
+float rref3 = 33000 ;
 
 
 
 void setup() {
   Serial.begin(9600);
-
-  pinMode(2,OUTPUT);
-  pinMode(3, OUTPUT);
-  
   Serial.println("");
   Serial.println("#####");
 }
 
-int i=0;
-
-
 void loop() {
-  if ((Serial.available()>0)){
-    char ch=Serial.read();
-    if (ch == 's'){
-      i=0;
-    }
-    if (ch == 'r') {
-      switch(i){
-        case 0:
-          digitalWrite(2,HIGH);
-          digitalWrite(3,LOW);
-          delay(100);
-          read();
-          i++;
-        break;
-        case 1:
-          digitalWrite(2,LOW);
-          digitalWrite(3,HIGH);
-          delay(100);
-          read();
-          i++;
-        break;
-        
-      }
-    }
-  }
-}
 
- 
-void read(){
+  
+  
   a0 = analogRead(A0);
   a0 = a0*5/1024;
   r0 = (rref0*a0)/(5-a0);
   
+ 
   a1 = analogRead(A1);
   a1 = a1*5/1024;
   r1 = (rref0*a1)/(5-a1);
@@ -89,8 +57,7 @@ void read(){
   a5 = analogRead(A5);
   a5 = a5*5/1024;
   r5 = (rref2*a5)/(5-a5);
-  r5=i;
-  /*
+  
   a6 = analogRead(A6);
   a6 = a6*5/1024;
   r6 = (rref3*a6)/(5-a6);
@@ -98,7 +65,11 @@ void read(){
   a7 = analogRead(A7);
   a7 = a7*5/1024;
   r7 = (rref3*a7)/(5-a7);
-  */
+
+if ((Serial.available()>1)){
+  
+  if (Serial.read() == 'r') {
+    
   Serial.print("[");
   Serial.print(r0);
   Serial.print(",");
@@ -111,9 +82,25 @@ void read(){
   Serial.print(r4);
   Serial.print(",");
   Serial.print(r5);
-  /*Serial.print(",");
+  Serial.print(",");
   Serial.print(r6);
   Serial.print(",");
   Serial.print(r7);
-  */Serial.println("]");
+  Serial.println("]"); 
+  Serial.println(a0);
+
+  
+
+  
+  }
+
+  }
+
+  
+
 }
+
+ 
+    
+
+
