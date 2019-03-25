@@ -26,7 +26,6 @@ float rref3 = 33000 ;
 void setup() {
   Serial.begin(9600);
   Serial.println("");
-  Serial.println("#####");
 }
 
 void loop() {
@@ -87,11 +86,6 @@ if ((Serial.available()>1)){
   Serial.print(",");
   Serial.print(r7);
   Serial.println("]"); 
-  Serial.println(a0);
-
-  
-
-  
   }
 
   }
